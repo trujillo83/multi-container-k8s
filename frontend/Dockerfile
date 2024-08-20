@@ -1,3 +1,13 @@
 # frontend/Dockerfile
-FROM nginx:alpine
-COPY nginx.conf /etc/nginx/nginx.conf
+FROM node:16-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install -g express
+
+COPY . .
+
+EXPOSE 80
+
+CMD ["npm", "start"]
